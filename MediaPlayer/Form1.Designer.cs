@@ -33,8 +33,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -55,7 +53,6 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.panel4);
             this.panel3.Location = new System.Drawing.Point(206, 110);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(381, 233);
@@ -64,8 +61,7 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Location = new System.Drawing.Point(203, 110);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(381, 233);
             this.panel4.TabIndex = 0;
@@ -73,7 +69,7 @@
             // 
             // panel5
             // 
-            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Location = new System.Drawing.Point(203, 110);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(381, 233);
             this.panel5.TabIndex = 0;
@@ -84,13 +80,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
