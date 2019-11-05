@@ -32,6 +32,11 @@ namespace MediaPlayerApp
 
             video = new Video(@"C:\Users\Jeon\Desktop\test\test.wmv", false);
             video.Owner = this;
+        }
+
+        /* 비디오 재생 */
+        public void playVideo()
+        {
             video.Play();
         }
     }
