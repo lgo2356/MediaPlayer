@@ -50,6 +50,10 @@ namespace MediaPlayerApp
             form2.Location = screens[1].Bounds.Location;  // Form2 창 위치를 2번 모니터로 설정
             form2.FormBorderStyle = FormBorderStyle.None;  // Form2 테두리 제거(완전한 전체화면)
             form2.WindowState = FormWindowState.Maximized;  // From2 전체화면으로 설정
+
+            //panel2.Parent = panel3;
+            //panel2.BackColor = Color.Transparent;
+            //panel2.Location = new Point(300, 82);
         }
 
         /* 오른쪽 화살표 시작 */
@@ -58,7 +62,7 @@ namespace MediaPlayerApp
         {
             Graphics graphics = e.Graphics;
             Image img = Image.FromFile("..\\..\\Resources\\arrow_right.png");  // 패널 이미지 적용(화살표)
-            graphics.DrawImage(img, 0, 0);
+            graphics.DrawImage(img, (panel1.Width - img.Width) / 2, (panel1.Height - img.Height) / 2);
         }
 
         /* Right 화살표 Mouse up 처리 */
@@ -113,13 +117,17 @@ namespace MediaPlayerApp
         {
             Graphics graphics = e.Graphics;
             Image img = Image.FromFile("..\\..\\Resources\\arrow_left.png");  // 패널 이미지 적용(화살표)
-            graphics.DrawImage(img, 0, 0);
+            Console.WriteLine("Width: " + img.Width + "Height: " + img.Height);
+            graphics.DrawImage(img, (panel2.Width - img.Width)/2, (panel2.Height - img.Height)/2);
         }
 
         /* Left 화살표 Mouse up 처리 */
         private void panel2_MouseUp(object sender, MouseEventArgs e)
         {
             Console.WriteLine("1페이지 왼쪽 화살표 Mouse up.");
+
+            panel2.Parent = this;
+            panel2.Location = new Point(12, 190);
 
             /* 1페이지일 경우 */
             if (page_1 == true && page_2 == false && page_3 == false)
@@ -236,5 +244,56 @@ namespace MediaPlayerApp
             Console.WriteLine("3페이지 그림 mouse down.");
         }
         /* 3페이지 끝 */
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            panel2.Visible = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            panel3.Location = new Point(panel3.Location.X - 150, panel3.Location.Y);
+
+            if (panel3.Location.X + 230 <= 0)
+            {
+                panel2.Parent = panel3;
+                panel2.BackColor = Color.Transparent;
+                panel2.Location = new Point(300, 82);
+                panel2.Visible = true;
+                panel3.Location = new Point(-300, panel3.Location.Y);
+
+                timer1.Stop();
+                //this.Refresh();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer2.Start();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            panel3.Location = new Point(panel3.Location.X + 150, panel3.Location.Y);
+
+            if (panel3.Location.X + 230 >= 328)
+            {
+                timer2.Stop();
+                //this.Refresh();
+            }
+        }
+
+        //private void Form1_Load(object sender, EventArgs e)
+        //{
+        //    Control.ControlCollection coll = this.Controls;
+        //    foreach (Control c in coll)
+        //    {
+        //        if (c.GetType() == typeof(Panel))
+        //        {
+        //            c.BackColor = Color.FromArgb(0, 0, 0, 0);
+        //        }
+        //    }
+        //}
     }
 }
