@@ -50,8 +50,6 @@ namespace MediaPlayerApp
             form2.Location = screens[1].Bounds.Location;  // Form2 창 위치를 2번 모니터로 설정
             form2.FormBorderStyle = FormBorderStyle.None;  // Form2 테두리 제거(완전한 전체화면)
             form2.WindowState = FormWindowState.Maximized;  // From2 전체화면으로 설정
-
-            form2.playVideo();  // Form2 비디오 재생
         }
 
         /* 오른쪽 화살표 시작 */
@@ -178,6 +176,8 @@ namespace MediaPlayerApp
         private void panel3_MouseUp(object sender, MouseEventArgs e)
         {
             Console.WriteLine("1페이지 그림 mouse up.");
+
+            form2.PlayVideo(0);
         }
 
         /* 1페이지 아이콘 Mouse down */
@@ -201,6 +201,8 @@ namespace MediaPlayerApp
         private void panel4_MouseUp(object sender, MouseEventArgs e)
         {
             Console.WriteLine("2페이지 그림 mouse up.");
+
+            form2.PlayVideo(1);
         }
 
         /* 2페이지 아이콘 Mouse down */
@@ -224,6 +226,8 @@ namespace MediaPlayerApp
         private void panel5_MouseUp(object sender, MouseEventArgs e)
         {
             Console.WriteLine("3페이지 그림 mouse up.");
+
+            form2.PlayVideo(2);
         }
 
         /* 3페이지 아이콘 Mouse down */
