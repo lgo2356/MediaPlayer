@@ -8,3 +8,9 @@ C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.
 C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.CoreCompileInputs.cache
 C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.exe
 C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.pdb
+C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Form2.resources
+C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\Interop.WMPLib.dll
+C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.ResolveComReference.cache
+C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\bin\Debug\Interop.WMPLib.dll
+C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\bin\Debug\AxInterop.WMPLib.dll

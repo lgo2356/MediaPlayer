@@ -1,4 +1,4 @@
-﻿namespace MediaPlayer
+﻿namespace MediaPlayerApp
 {
     partial class Form1
     {
@@ -33,55 +33,66 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel_video = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(709, 187);
+            this.panel1.Location = new System.Drawing.Point(708, 190);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(79, 70);
+            this.panel1.Size = new System.Drawing.Size(80, 70);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(12, 187);
+            this.panel2.Location = new System.Drawing.Point(12, 190);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(79, 70);
-            this.panel2.TabIndex = 1;
+            this.panel2.Size = new System.Drawing.Size(80, 70);
+            this.panel2.TabIndex = 0;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(206, 110);
+            this.panel3.Location = new System.Drawing.Point(209, 108);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(381, 233);
-            this.panel3.TabIndex = 2;
+            this.panel3.Size = new System.Drawing.Size(382, 234);
+            this.panel3.TabIndex = 0;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panel4
             // 
-            this.panel4.Location = new System.Drawing.Point(203, 110);
+            this.panel4.Location = new System.Drawing.Point(209, 108);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(381, 233);
-            this.panel4.TabIndex = 0;
+            this.panel4.Size = new System.Drawing.Size(382, 234);
+            this.panel4.TabIndex = 1;
+            this.panel4.Visible = false;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // panel5
             // 
-            this.panel5.Location = new System.Drawing.Point(203, 110);
+            this.panel5.Location = new System.Drawing.Point(209, 108);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(381, 233);
-            this.panel5.TabIndex = 0;
+            this.panel5.Size = new System.Drawing.Size(382, 234);
+            this.panel5.TabIndex = 2;
+            this.panel5.Visible = false;
             this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
+            // 
+            // panel_video
+            // 
+            this.panel_video.Location = new System.Drawing.Point(12, 338);
+            this.panel_video.Name = "panel_video";
+            this.panel_video.Size = new System.Drawing.Size(200, 100);
+            this.panel_video.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel_video);
             this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -98,6 +109,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel_video;
     }
 }
 

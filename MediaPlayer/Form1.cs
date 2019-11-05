@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.DirectX.AudioVideoPlayback;
 
-namespace MediaPlayer
+namespace MediaPlayerApp
 {
     public partial class Form1 : Form
     {
@@ -16,24 +17,27 @@ namespace MediaPlayer
         bool page_1 = true;
         bool page_2 = false;
         bool page_3 = false;
+        Video video;
 
         public Form1()
         {
             InitializeComponent();
 
-            /* 마우스 이벤트 핸들러 */
-            panel1.MouseUp += new MouseEventHandler(panel1_MouseUp);
-            panel1.MouseDown += new MouseEventHandler(panel1_MouseDown);
-            panel2.MouseUp += new MouseEventHandler(panel2_MouseUp);
-            panel2.MouseDown += new MouseEventHandler(panel2_MouseDown);
-            //panel7.MouseUp += new MouseEventHandler(panel7_MouseUp);  // 2페이지 오른쪽 화살표 이벤트 핸들러
-            //panel7.MouseUp += new MouseEventHandler(panel7_MouseDown);  // 2페이지 오른쪽 화살표 이벤트 핸들러
-            //panel6.MouseUp += new MouseEventHandler(panel6_MouseUp);  // 2페이지 왼쪽 화살표 이벤트 핸들러
-            //panel6.MouseUp += new MouseEventHandler(panel6_MouseDown);  // 2페이지 왼쪽 화살표 이벤트 핸들러
-            //panel9.MouseUp += new MouseEventHandler(panel9_MouseUp);  // 3페이지 오른쪽 화살표 이벤트 핸들러
-            //panel9.MouseUp += new MouseEventHandler(panel9_MouseDown);  // 3페이지 오른쪽 화살표 이벤트 핸들러
-            //panel8.MouseUp += new MouseEventHandler(panel8_MouseUp);  // 3페이지 왼쪽 화살표 이벤트 핸들러
-            //panel8.MouseUp += new MouseEventHandler(panel8_MouseDown);  // 3페이지 왼쪽 화살표 이벤트 핸들러
+            /* 마우스 이벤트 핸들러 시작 */
+            panel1.MouseUp += new MouseEventHandler(panel1_MouseUp);  // 오른쪽 화살표
+            panel1.MouseDown += new MouseEventHandler(panel1_MouseDown);  // 오른쪽 화살표
+            panel2.MouseUp += new MouseEventHandler(panel2_MouseUp);  // 왼쪽 화살표
+            panel2.MouseDown += new MouseEventHandler(panel2_MouseDown);  // 왼쪽 화살표
+            /* 마우스 이벤트 핸들러 끝 */
+
+            Console.WriteLine("모니터 숫자: " + Screen.AllScreens.Count());
+            Screen[] screens = Screen.AllScreens;
+
+            Form2 form2 = new Form2();
+            form2.Owner = this;
+            form2.Show();
+            form2.Location = screens[1].Bounds.Location;
+            form2.WindowState = FormWindowState.Maximized;
         }
 
         /* 1페이지 시작 */
@@ -60,7 +64,7 @@ namespace MediaPlayer
             //System.Diagnostics.Process.Start("..\\..\\Resources\\MediaPlayer.mp4");
 
             /* 1페이지일 경우 */
-            if(page_1 == true)
+            if (page_1 == true && page_2 == false && page_3 == false)
             {
                 Console.WriteLine("1 page");
                 panel4.Visible = true;
@@ -72,7 +76,7 @@ namespace MediaPlayer
             }
 
             /* 2페이지일 경우 */
-            if (page_2 == true)
+            if (page_2 == true && page_1 == false && page_3 == false)
             {
                 Console.WriteLine("2 page");
                 panel5.Visible = true;
@@ -84,7 +88,7 @@ namespace MediaPlayer
             }
 
             /* 3페이지일 경우 */
-            if (page_3 == true)
+            if (page_3 == true && page_1 == false && page_2 == false)
             {
                 Console.WriteLine("3 page");
                 panel3.Visible = true;
@@ -96,13 +100,13 @@ namespace MediaPlayer
             }
         }
 
-        /* 1페이지 Right 화살표 Mouse down 처리 */
+        /* Right 화살표 Mouse down 처리 */
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             Console.WriteLine("1페이지 오른쪽 Mouse down.");
         }
 
-        /* 1페이지 Left 화살표 버튼 이미지 */
+        /* Left 화살표 버튼 이미지 */
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
@@ -110,13 +114,13 @@ namespace MediaPlayer
             graphics.DrawImage(img, 0, 0);
         }
 
-        /* 1페이지 Left 화살표 Mouse up 처리 */
+        /* Left 화살표 Mouse up 처리 */
         private void panel2_MouseUp(object sender, MouseEventArgs e)
         {
             Console.WriteLine("1페이지 왼쪽 화살표 Mouse up.");
         }
 
-        /* 1페이지 Left 화살표 Mouse down 처리 */
+        /* Left 화살표 Mouse down 처리 */
         private void panel2_MouseDown(object sender, MouseEventArgs e)
         {
             Console.WriteLine("1페이지 왼쪽 화살표 Mouse down.");
