@@ -54,15 +54,6 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("1페이지 오른쪽 Mouse up.");
 
-            //panel7.Visible = true;
-            //panel1.Visible = false;
-            //this.Visible = false;
-            //Form2 form2 = new Form2();
-            //form2.Owner = this;
-            //form2.Show();
-            //panel3.Visible = true;
-            //System.Diagnostics.Process.Start("..\\..\\Resources\\MediaPlayer.mp4");
-
             /* 1페이지일 경우 */
             if (page_1 == true && page_2 == false && page_3 == false)
             {
