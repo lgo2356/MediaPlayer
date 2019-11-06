@@ -32,6 +32,7 @@
             this.arrow_btn_right = new System.Windows.Forms.Panel();
             this.arrow_btn_left = new System.Windows.Forms.Panel();
             this.page1_panel = new System.Windows.Forms.Panel();
+            this.base_panel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -66,6 +67,14 @@
             this.page1_panel.Size = new System.Drawing.Size(382, 234);
             this.page1_panel.TabIndex = 0;
             this.page1_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // base_panel
+            // 
+            this.base_panel.Location = new System.Drawing.Point(209, 108);
+            this.base_panel.Name = "base_panel";
+            this.base_panel.Size = new System.Drawing.Size(382, 234);
+            this.base_panel.TabIndex = 0;
+            this.base_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
             // panel4
             // 
@@ -146,6 +155,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
+            this.Controls.Add(this.base_panel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.TransparencyKey = System.Drawing.Color.Black;
@@ -166,6 +176,7 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Panel page3_panel;
         private System.Windows.Forms.Panel page2_panel;
+        private System.Windows.Forms.Panel base_panel;
     }
 }
 
