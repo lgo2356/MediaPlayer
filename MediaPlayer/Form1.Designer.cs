@@ -29,41 +29,43 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.arrow_btn_right = new System.Windows.Forms.Panel();
+            this.arrow_btn_left = new System.Windows.Forms.Panel();
+            this.page1_panel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.page3_panel = new System.Windows.Forms.Panel();
+            this.page2_panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panel1
+            // arrow_btn_right
             // 
-            this.panel1.Location = new System.Drawing.Point(708, 190);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(80, 70);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.arrow_btn_right.Location = new System.Drawing.Point(708, 190);
+            this.arrow_btn_right.Name = "arrow_btn_right";
+            this.arrow_btn_right.Size = new System.Drawing.Size(80, 70);
+            this.arrow_btn_right.TabIndex = 0;
+            this.arrow_btn_right.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // panel2
+            // arrow_btn_left
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel2.Location = new System.Drawing.Point(12, 190);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(80, 70);
-            this.panel2.TabIndex = 0;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.arrow_btn_left.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.arrow_btn_left.Location = new System.Drawing.Point(12, 190);
+            this.arrow_btn_left.Name = "arrow_btn_left";
+            this.arrow_btn_left.Size = new System.Drawing.Size(80, 70);
+            this.arrow_btn_left.TabIndex = 0;
+            this.arrow_btn_left.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // panel3
+            // page1_panel
             // 
-            this.panel3.Location = new System.Drawing.Point(209, 108);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(382, 234);
-            this.panel3.TabIndex = 0;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            this.page1_panel.Location = new System.Drawing.Point(209, 108);
+            this.page1_panel.Name = "page1_panel";
+            this.page1_panel.Size = new System.Drawing.Size(382, 234);
+            this.page1_panel.TabIndex = 0;
+            this.page1_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panel4
             // 
@@ -113,19 +115,37 @@
             this.timer2.Interval = 10;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // page3_panel
+            // 
+            this.page3_panel.Location = new System.Drawing.Point(-280, 108);
+            this.page3_panel.Name = "page3_panel";
+            this.page3_panel.Size = new System.Drawing.Size(382, 234);
+            this.page3_panel.TabIndex = 0;
+            this.page3_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.page3_panel_Paint);
+            // 
+            // page2_panel
+            // 
+            this.page2_panel.Location = new System.Drawing.Point(698, 108);
+            this.page2_panel.Name = "page2_panel";
+            this.page2_panel.Size = new System.Drawing.Size(382, 234);
+            this.page2_panel.TabIndex = 5;
+            this.page2_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.page2_panel_Paint);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.page1_panel);
+            this.Controls.Add(this.arrow_btn_right);
+            this.Controls.Add(this.arrow_btn_left);
+            this.Controls.Add(this.page2_panel);
+            this.Controls.Add(this.page3_panel);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.TransparencyKey = System.Drawing.Color.Black;
@@ -135,15 +155,17 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel arrow_btn_right;
+        private System.Windows.Forms.Panel arrow_btn_left;
+        private System.Windows.Forms.Panel page1_panel;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Panel page3_panel;
+        private System.Windows.Forms.Panel page2_panel;
     }
 }
 

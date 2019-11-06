@@ -28,12 +28,12 @@ namespace MediaPlayerApp
             InitializeComponent();
 
             /* 마우스 이벤트 핸들러 시작 */
-            panel1.MouseUp += new MouseEventHandler(panel1_MouseUp);  // 오른쪽 화살표
-            panel1.MouseDown += new MouseEventHandler(panel1_MouseDown);  // 오른쪽 화살표
-            panel2.MouseUp += new MouseEventHandler(panel2_MouseUp);  // 왼쪽 화살표
-            panel2.MouseDown += new MouseEventHandler(panel2_MouseDown);  // 왼쪽 화살표
-            panel3.MouseUp += new MouseEventHandler(panel3_MouseUp);  // 1페이지 그림
-            panel3.MouseDown += new MouseEventHandler(panel3_MouseDown);  // 1페이지 그림
+            arrow_btn_right.MouseUp += new MouseEventHandler(panel1_MouseUp);  // 오른쪽 화살표
+            arrow_btn_right.MouseDown += new MouseEventHandler(panel1_MouseDown);  // 오른쪽 화살표
+            arrow_btn_left.MouseUp += new MouseEventHandler(panel2_MouseUp);  // 왼쪽 화살표
+            arrow_btn_left.MouseDown += new MouseEventHandler(panel2_MouseDown);  // 왼쪽 화살표
+            page1_panel.MouseUp += new MouseEventHandler(panel3_MouseUp);  // 1페이지 그림
+            page1_panel.MouseDown += new MouseEventHandler(panel3_MouseDown);  // 1페이지 그림
             panel4.MouseUp += new MouseEventHandler(panel4_MouseUp);  // 2페이지 그림
             panel4.MouseDown += new MouseEventHandler(panel4_MouseDown);  // 2페이지 그림
             panel5.MouseUp += new MouseEventHandler(panel5_MouseUp);  // 3페이지 그림
@@ -50,10 +50,6 @@ namespace MediaPlayerApp
             form2.Location = screens[1].Bounds.Location;  // Form2 창 위치를 2번 모니터로 설정
             form2.FormBorderStyle = FormBorderStyle.None;  // Form2 테두리 제거(완전한 전체화면)
             form2.WindowState = FormWindowState.Maximized;  // From2 전체화면으로 설정
-
-            //panel2.Parent = panel3;
-            //panel2.BackColor = Color.Transparent;
-            //panel2.Location = new Point(300, 82);
         }
 
         /* 오른쪽 화살표 시작 */
@@ -62,7 +58,8 @@ namespace MediaPlayerApp
         {
             Graphics graphics = e.Graphics;
             Image img = Image.FromFile("..\\..\\Resources\\arrow_right.png");  // 패널 이미지 적용(화살표)
-            graphics.DrawImage(img, (panel1.Width - img.Width) / 2, (panel1.Height - img.Height) / 2);
+            graphics.DrawImage(img, (arrow_btn_right.Width - img.Width) / 2, (arrow_btn_right.Height - img.Height) / 2);
+            arrow_btn_right.BackColor = Color.Transparent;  // 배경 투명하게
         }
 
         /* Right 화살표 Mouse up 처리 */
@@ -74,7 +71,7 @@ namespace MediaPlayerApp
             if (page_1 == true && page_2 == false && page_3 == false)
             {
                 panel4.Visible = true;
-                panel3.Visible = false;
+                page1_panel.Visible = false;
 
                 page_1 = false;
                 page_2 = true;
@@ -95,7 +92,7 @@ namespace MediaPlayerApp
             /* 3페이지일 경우 */
             if (page_3 == true && page_1 == false && page_2 == false)
             {
-                panel3.Visible = true;
+                page1_panel.Visible = true;
                 panel5.Visible = false;
 
                 page_3 = false;
@@ -118,7 +115,8 @@ namespace MediaPlayerApp
             Graphics graphics = e.Graphics;
             Image img = Image.FromFile("..\\..\\Resources\\arrow_left.png");  // 패널 이미지 적용(화살표)
             Console.WriteLine("Width: " + img.Width + "Height: " + img.Height);
-            graphics.DrawImage(img, (panel2.Width - img.Width)/2, (panel2.Height - img.Height)/2);
+            graphics.DrawImage(img, (arrow_btn_left.Width - img.Width)/2, (arrow_btn_left.Height - img.Height)/2);
+            arrow_btn_left.BackColor = Color.Transparent;  // 배경 투명하게
         }
 
         /* Left 화살표 Mouse up 처리 */
@@ -126,14 +124,14 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("1페이지 왼쪽 화살표 Mouse up.");
 
-            panel2.Parent = this;
-            panel2.Location = new Point(12, 190);
+            arrow_btn_left.Parent = this;
+            arrow_btn_left.Location = new Point(12, 190);
 
             /* 1페이지일 경우 */
             if (page_1 == true && page_2 == false && page_3 == false)
             {
                 panel5.Visible = true;
-                panel3.Visible = false;
+                page1_panel.Visible = false;
 
                 page_1 = false;
                 page_3 = true;
@@ -143,7 +141,7 @@ namespace MediaPlayerApp
             /* 2페이지일 경우 */
             if (page_2 == true && page_1 == false && page_3 == false)
             {
-                panel3.Visible = true;
+                page1_panel.Visible = true;
                 panel4.Visible = false;
 
                 page_2 = false;
@@ -177,7 +175,7 @@ namespace MediaPlayerApp
             Console.WriteLine("1 page icon");
             Graphics graphics = e.Graphics;
             Image img = Image.FromFile("..\\..\\Resources\\1page.jpg");  // 패널 이미지 적용
-            graphics.DrawImage(img, 0, 0, panel3.Width, panel3.Height);
+            graphics.DrawImage(img, 0, 0, page1_panel.Width, page1_panel.Height);
         }
 
         /* 1페이지 아이콘 Mouse up */
@@ -248,20 +246,32 @@ namespace MediaPlayerApp
         private void button1_Click(object sender, EventArgs e)
         {
             timer1.Start();
-            panel2.Visible = false;
+            //arrow_btn_left.Visible = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            panel3.Location = new Point(panel3.Location.X - 150, panel3.Location.Y);
+            page1_panel.Location = new Point(page1_panel.Location.X - 150, page1_panel.Location.Y);
+            page2_panel.Location = new Point(page2_panel.Location.X - 150, page2_panel.Location.Y);
+            page3_panel.Location = new Point(page3_panel.Location.X - 150, page3_panel.Location.Y);
 
-            if (panel3.Location.X + 230 <= 0)
+            if (page1_panel.Location.X + 230 <= 0)
             {
-                panel2.Parent = panel3;
-                panel2.BackColor = Color.Transparent;
-                panel2.Location = new Point(300, 82);
-                panel2.Visible = true;
-                panel3.Location = new Point(-300, panel3.Location.Y);
+                /* page1 시작 */
+                page1_panel.Location = new Point(-280, page1_panel.Location.Y);
+
+                //arrow_btn_left.Parent = page1_panel;
+                //arrow_btn_left.Location = new Point(292, 82);
+                //arrow_btn_left.Visible = true;
+                /* page1 끝 */
+                //
+                /* page2 시작 */
+                page2_panel.Location = new Point(209, page2_panel.Location.Y);
+                /* page2 끝 */
+                //
+                /* page3 시작 */
+                page3_panel.Location = new Point(698, page3_panel.Location.Y);
+                /* page3 끝 */
 
                 timer1.Stop();
                 //this.Refresh();
@@ -275,25 +285,45 @@ namespace MediaPlayerApp
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            panel3.Location = new Point(panel3.Location.X + 150, panel3.Location.Y);
+            page1_panel.Location = new Point(page1_panel.Location.X + 150, page1_panel.Location.Y);
+            page2_panel.Location = new Point(page2_panel.Location.X + 150, page2_panel.Location.Y);
+            page3_panel.Location = new Point(page3_panel.Location.X + 150, page3_panel.Location.Y);
 
-            if (panel3.Location.X + 230 >= 328)
+            if (page1_panel.Location.X + 230 >= 328)
             {
+                /* page1 시작 */
+                page1_panel.Location = new Point(209, page1_panel.Location.Y);
+
+                //arrow_btn_left.Parent = page1_panel;
+                //arrow_btn_left.Location = new Point(292, 82);
+                //arrow_btn_left.Visible = true;
+                /* page1 끝 */
+                //
+                /* page2 시작 */
+                page2_panel.Location = new Point(698, page2_panel.Location.Y);
+                /* page2 끝 */
+                //
+                /* page3 시작 */
+                page3_panel.Location = new Point(-280, page3_panel.Location.Y);
+                /* page3 끝 */
+
                 timer2.Stop();
                 //this.Refresh();
             }
         }
 
-        //private void Form1_Load(object sender, EventArgs e)
-        //{
-        //    Control.ControlCollection coll = this.Controls;
-        //    foreach (Control c in coll)
-        //    {
-        //        if (c.GetType() == typeof(Panel))
-        //        {
-        //            c.BackColor = Color.FromArgb(0, 0, 0, 0);
-        //        }
-        //    }
-        //}
+        private void page2_panel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Image img = Image.FromFile("..\\..\\Resources\\2page.jpg");
+            graphics.DrawImage(img, 0, 0, panel4.Width, panel4.Height);
+        }
+
+        private void page3_panel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Image img = Image.FromFile("..\\..\\Resources\\3page.jpg");
+            graphics.DrawImage(img, 0, 0, panel5.Width, panel5.Height);
+        }
     }
 }
