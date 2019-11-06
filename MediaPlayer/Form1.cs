@@ -51,6 +51,9 @@ namespace MediaPlayerApp
             form2.Location = screens[1].Bounds.Location;  // Form2 창 위치를 2번 모니터로 설정
             form2.FormBorderStyle = FormBorderStyle.None;  // Form2 테두리 제거(완전한 전체화면)
             form2.WindowState = FormWindowState.Maximized;  // From2 전체화면으로 설정
+
+            arrow_btn_right.Parent = page2_panel;
+            arrow_btn_right.Location = new Point(292, 82);
         }
 
         /* 오른쪽 화살표 시작 */
@@ -244,7 +247,6 @@ namespace MediaPlayerApp
         }
         /* 3페이지 끝 */
 
-        int clicked_count = 0;
         private void button1_Click(object sender, EventArgs e)  // previous button
         {
             if(page1_panel.Location.X <= 0)
@@ -265,8 +267,11 @@ namespace MediaPlayerApp
                 page_2 = false;
                 page_3 = false;
             }
-            timer1.Start();
+
+            //arrow_btn_right.Visible = false;
             //arrow_btn_left.Visible = false;
+
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -287,6 +292,9 @@ namespace MediaPlayerApp
                     // 2페이지로 넘어가기(2페이지 구성)
                     /* page1 시작 */
                     page1_panel.Location = new Point(-280, page1_panel.Location.Y);
+                    arrow_btn_left.Parent = page1_panel;
+                    arrow_btn_left.Location = new Point(292, 82);
+                    arrow_btn_left.Visible = true;
                     /* page1 끝 */
                     //
                     /* page2 시작 */
@@ -295,6 +303,9 @@ namespace MediaPlayerApp
                     //
                     /* page3 시작 */
                     page3_panel.Location = new Point(698, page3_panel.Location.Y);
+                    arrow_btn_right.Parent = page3_panel;
+                    arrow_btn_right.Location = new Point(10, 82);
+                    arrow_btn_right.Visible = true;
                     /* page3 끝 */
                 }
 
@@ -303,10 +314,16 @@ namespace MediaPlayerApp
                     // 3페이지로 넘어가기(3페이지 구성)
                     /* page1 시작 */
                     page1_panel.Location = new Point(698, page1_panel.Location.Y);
+                    arrow_btn_right.Parent = page1_panel;
+                    arrow_btn_right.Location = new Point(10, 82);
+                    arrow_btn_right.Visible = true;
                     /* page1 끝 */
                     //
                     /* page2 시작 */
                     page2_panel.Location = new Point(-280, page2_panel.Location.Y);
+                    arrow_btn_left.Parent = page2_panel;
+                    arrow_btn_left.Location = new Point(292, 82);
+                    arrow_btn_left.Visible = true;
                     /* page2 끝 */
                     //
                     /* page3 시작 */
@@ -323,13 +340,18 @@ namespace MediaPlayerApp
                     //
                     /* page2 시작 */
                     page2_panel.Location = new Point(698, page2_panel.Location.Y);
+                    arrow_btn_right.Parent = page2_panel;
+                    arrow_btn_right.Location = new Point(10, 82);
+                    arrow_btn_right.Visible = true;
                     /* page2 끝 */
                     //
                     /* page3 시작 */
                     page3_panel.Location = new Point(-280, page3_panel.Location.Y);
+                    arrow_btn_left.Parent = page3_panel;
+                    arrow_btn_left.Location = new Point(292, 82);
+                    arrow_btn_left.Visible = true;
                     /* page3 끝 */
                 }
-
 
                 //if (page1_panel.Location.X < 0)
                 //{
@@ -358,35 +380,87 @@ namespace MediaPlayerApp
 
         private void button2_Click(object sender, EventArgs e)  // next button
         {
+            if (page1_panel.Location.X <= 0)
+            {
+                page_1 = false;
+                page_2 = true;
+                page_3 = false;
+            }
+            if (page2_panel.Location.X <= 0)
+            {
+                page_1 = false;
+                page_2 = false;
+                page_3 = true;
+            }
+            if (page3_panel.Location.X <= 0)
+            {
+                page_1 = true;
+                page_2 = false;
+                page_3 = false;
+            }
             timer2.Start();
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            base_panel.Location = new Point(base_panel.Location.X + 150, base_panel.Location.Y);
             page1_panel.Location = new Point(page1_panel.Location.X + 150, page1_panel.Location.Y);
             page2_panel.Location = new Point(page2_panel.Location.X + 150, page2_panel.Location.Y);
             page3_panel.Location = new Point(page3_panel.Location.X + 150, page3_panel.Location.Y);
 
-            if (page1_panel.Location.X + 230 >= 328)
+            if (base_panel.Location.X >= 698)
             {
-                /* page1 시작 */
-                page1_panel.Location = new Point(209, page1_panel.Location.Y);
-
-                //arrow_btn_left.Parent = page1_panel;
-                //arrow_btn_left.Location = new Point(292, 82);
-                //arrow_btn_left.Visible = true;
-                /* page1 끝 */
-                //
-                /* page2 시작 */
-                page2_panel.Location = new Point(698, page2_panel.Location.Y);
-                /* page2 끝 */
-                //
-                /* page3 시작 */
-                page3_panel.Location = new Point(-280, page3_panel.Location.Y);
-                /* page3 끝 */
+                base_panel.Location = new Point(209, base_panel.Location.Y);
 
                 timer2.Stop();
-                //this.Refresh();
+
+                if (page_1)
+                {
+                    // 2페이지로 넘어가기(2페이지 구성)
+                    /* page1 시작 */
+                    page1_panel.Location = new Point(698, page1_panel.Location.Y);
+                    /* page1 끝 */
+                    //
+                    /* page2 시작 */
+                    page2_panel.Location = new Point(-280, page2_panel.Location.Y);
+                    /* page2 끝 */
+                    //
+                    /* page3 시작 */
+                    page3_panel.Location = new Point(209, page3_panel.Location.Y);
+                    /* page3 끝 */
+                }
+
+                if (page_2)
+                {
+                    // 3페이지로 넘어가기(3페이지 구성)
+                    /* page1 시작 */
+                    page1_panel.Location = new Point(209, page1_panel.Location.Y);
+                    /* page1 끝 */
+                    //
+                    /* page2 시작 */
+                    page2_panel.Location = new Point(698, page2_panel.Location.Y);
+                    /* page2 끝 */
+                    //
+                    /* page3 시작 */
+                    page3_panel.Location = new Point(-280, page3_panel.Location.Y);
+                    /* page3 끝 */
+                }
+
+                if (page_3)
+                {
+                    // 1페이지로 넘어가기(1페이지 구성)
+                    /* page1 시작 */
+                    page1_panel.Location = new Point(-280, page1_panel.Location.Y);
+                    /* page1 끝 */
+                    //
+                    /* page2 시작 */
+                    page2_panel.Location = new Point(209, page2_panel.Location.Y);
+                    /* page2 끝 */
+                    //
+                    /* page3 시작 */
+                    page3_panel.Location = new Point(698, page3_panel.Location.Y);
+                    /* page3 끝 */
+                }
             }
         }
 
