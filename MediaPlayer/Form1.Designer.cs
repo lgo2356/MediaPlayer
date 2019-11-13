@@ -33,10 +33,10 @@
             this.arrow_btn_left = new System.Windows.Forms.Panel();
             this.page1_panel = new System.Windows.Forms.Panel();
             this.base_panel = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.right_animator = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.left_animator = new System.Windows.Forms.Timer(this.components);
             this.page3_panel = new System.Windows.Forms.Panel();
             this.page2_panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             // 
             // arrow_btn_left
             // 
-            this.arrow_btn_left.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.arrow_btn_left.BackColor = System.Drawing.SystemColors.Control;
             this.arrow_btn_left.Location = new System.Drawing.Point(12, 190);
             this.arrow_btn_left.Name = "arrow_btn_left";
             this.arrow_btn_left.Size = new System.Drawing.Size(80, 70);
@@ -70,13 +70,13 @@
             // 
             this.base_panel.Location = new System.Drawing.Point(209, 108);
             this.base_panel.Name = "base_panel";
-            this.base_panel.Size = new System.Drawing.Size(382, 234);
+            this.base_panel.Size = new System.Drawing.Size(50, 50);
             this.base_panel.TabIndex = 0;
             // 
-            // timer1
+            // right_animator
             // 
-            this.timer1.Interval = 1;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.right_animator.Interval = 1;
+            this.right_animator.Tick += new System.EventHandler(this.right_animator_Tick);
             // 
             // button1
             // 
@@ -98,24 +98,24 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // timer2
+            // left_animator
             // 
-            this.timer2.Interval = 10;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.left_animator.Interval = 1;
+            this.left_animator.Tick += new System.EventHandler(this.left_animator_Tick);
             // 
             // page3_panel
             // 
-            this.page3_panel.Location = new System.Drawing.Point(-280, 108);
+            this.page3_panel.Location = new System.Drawing.Point(-280, 155);
             this.page3_panel.Name = "page3_panel";
-            this.page3_panel.Size = new System.Drawing.Size(382, 234);
+            this.page3_panel.Size = new System.Drawing.Size(382, 140);
             this.page3_panel.TabIndex = 0;
             this.page3_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.page3_panel_Paint);
             // 
             // page2_panel
             // 
-            this.page2_panel.Location = new System.Drawing.Point(698, 108);
+            this.page2_panel.Location = new System.Drawing.Point(698, 155);
             this.page2_panel.Name = "page2_panel";
-            this.page2_panel.Size = new System.Drawing.Size(382, 234);
+            this.page2_panel.Size = new System.Drawing.Size(382, 140);
             this.page2_panel.TabIndex = 5;
             this.page2_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.page2_panel_Paint);
             // 
@@ -145,10 +145,10 @@
         private System.Windows.Forms.Panel arrow_btn_right;
         private System.Windows.Forms.Panel arrow_btn_left;
         private System.Windows.Forms.Panel page1_panel;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer right_animator;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer left_animator;
         private System.Windows.Forms.Panel page3_panel;
         private System.Windows.Forms.Panel page2_panel;
         private System.Windows.Forms.Panel base_panel;
