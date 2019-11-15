@@ -19,3 +19,4 @@ C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Release\MediaPlayerApp.cs
 C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Release\MediaPlayerApp.csproj.CopyComplete
 C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.exe
 C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Release\MediaPlayer.pdb
+C:\Users\Jeon\source\repos\MediaPlayer\MediaPlayer\obj\Release\MediaPlayerApp.csprojAssemblyReference.cache

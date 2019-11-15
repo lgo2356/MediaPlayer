@@ -30,16 +30,20 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("Hello");
 
-            video1 = new Video(@"C:\Users\Jeon\Desktop\test\test.wmv", false);
+            //video1 = new Video(@"C:\Users\Jeon\Desktop\test\test.wmv", false);
+            video1 = new Video("Resources\\Videos\\test.wmv", false);
             video1.Owner = this;
 
-            video2 = new Video(@"C:\Users\Jeon\Desktop\test\test2.wmv", false);
+            //video2 = new Video(@"C:\Users\Jeon\Desktop\test\test2.wmv", false);
+            video2 = new Video("Resources\\Videos\\test2.wmv", false);
             video2.Owner = this;
 
-            video3 = new Video(@"C:\Users\Jeon\Desktop\test\test3.wmv", false);
+            //video3 = new Video(@"C:\Users\Jeon\Desktop\test\test3.wmv", false);
+            video3 = new Video("Resources\\Videos\\test3.wmv", false);
             video3.Owner = this;
 
-            video4 = new Video(@"C:\Users\Jeon\Desktop\test\test4.wmv", false);
+            //video4 = new Video(@"C:\Users\Jeon\Desktop\test\test4.wmv", false);
+            video4 = new Video("Resources\\Videos\\test4.wmv", false);
             video4.Owner = this;
             video4.Play();
         }
@@ -141,19 +145,19 @@ namespace MediaPlayerApp
             switch (index)
             {
                 case 0:
-                    video1 = new Video(@"C:\Users\Jeon\Desktop\test\test.wmv", false);
+                    video1 = new Video("Resources\\Videos\\test.wmv", false);
                     video1.Owner = this;
                     break;
                 case 1:
-                    video2 = new Video(@"C:\Users\Jeon\Desktop\test\test2.wmv", false);
+                    video2 = new Video("Resources\\Videos\\test2.wmv", false);
                     video2.Owner = this;
                     break;
                 case 2:
-                    video3 = new Video(@"C:\Users\Jeon\Desktop\test\test3.wmv", false);
+                    video3 = new Video("Resources\\Videos\\test3.wmv", false);
                     video3.Owner = this;
                     break;
                 case 3:
-                    video4 = new Video(@"C:\Users\Jeon\Desktop\test\test4.wmv", false);
+                    video4 = new Video("Resources\\Videos\\test4.wmv", false);
                     video4.Owner = this;
                     break;
             }

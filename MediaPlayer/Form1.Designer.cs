@@ -34,8 +34,6 @@
             this.page1_panel = new System.Windows.Forms.Panel();
             this.base_panel = new System.Windows.Forms.Panel();
             this.right_animator = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.left_animator = new System.Windows.Forms.Timer(this.components);
             this.page3_panel = new System.Windows.Forms.Panel();
             this.page2_panel = new System.Windows.Forms.Panel();
@@ -60,9 +58,9 @@
             // 
             // page1_panel
             // 
-            this.page1_panel.Location = new System.Drawing.Point(209, 108);
+            this.page1_panel.Location = new System.Drawing.Point(209, 108);  // Panel 위치 좌표
             this.page1_panel.Name = "page1_panel";
-            this.page1_panel.Size = new System.Drawing.Size(382, 234);
+            this.page1_panel.Size = new System.Drawing.Size(382, 234);  // Panel 크기
             this.page1_panel.TabIndex = 0;
             this.page1_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.page1_panel_Paint);
             // 
@@ -77,26 +75,6 @@
             // 
             this.right_animator.Interval = 1;
             this.right_animator.Tick += new System.EventHandler(this.right_animator_Tick);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(375, 407);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(515, 407);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // left_animator
             // 
@@ -127,17 +105,17 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.arrow_btn_right);
             this.Controls.Add(this.arrow_btn_left);
+            this.Controls.Add(this.page1_panel);
             this.Controls.Add(this.page2_panel);
             this.Controls.Add(this.page3_panel);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.page1_panel);
             this.Controls.Add(this.base_panel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.TransparencyKey = System.Drawing.Color.Black;
             this.ResumeLayout(false);
 
+            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
 
         #endregion
@@ -146,8 +124,6 @@
         private System.Windows.Forms.Panel arrow_btn_left;
         private System.Windows.Forms.Panel page1_panel;
         private System.Windows.Forms.Timer right_animator;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer left_animator;
         private System.Windows.Forms.Panel page3_panel;
         private System.Windows.Forms.Panel page2_panel;
