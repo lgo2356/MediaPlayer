@@ -1,4 +1,6 @@
-﻿namespace MediaPlayerApp
+﻿using System.Windows.Forms;
+
+namespace MediaPlayerApp
 {
     partial class Form1
     {
@@ -99,6 +101,9 @@
             // 
             // Form1
             // 
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;  // 창 테두리 없애기
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;  // 전체화면
+
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -113,9 +118,6 @@
             this.Text = "Form1";
             this.TransparencyKey = System.Drawing.Color.Black;
             this.ResumeLayout(false);
-
-            //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
 
         #endregion

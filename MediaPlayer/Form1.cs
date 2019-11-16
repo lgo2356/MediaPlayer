@@ -23,9 +23,14 @@ namespace MediaPlayerApp
 
         /* 페이지 블러 처리 flag 변수 초기화 시작 */
         bool blur_page1 = false;
-        bool blur_page2 = false;
-        bool blur_page3 = false;
+        bool blur_page2 = true;
+        bool blur_page3 = true;
         /* 페이지 블러 처리 flag 변수 초기화 끝 */
+
+        /* Init flag */
+        bool init_page1 = false;
+        bool init_page2 = false;
+        bool init_page3 = false;
 
         /* Class 정의 시작 */
         Video video;
@@ -95,6 +100,8 @@ namespace MediaPlayerApp
             Graphics graphics = e.Graphics;
             graphics.DrawImage(arrow_right_img, (arrow_btn_right.Width - arrow_right_img.Width) / 2, (arrow_btn_right.Height - arrow_right_img.Height) / 2);
             arrow_btn_right.BackColor = Color.Transparent;  // 배경 투명하게
+
+            arrow_btn_right.Location = new Point(ClientSize.Width - 92, ClientSize.Height/2 - arrow_btn_right.Height/2);
         }
 
         /* Right 화살표 Mouse up 처리 */
@@ -143,6 +150,8 @@ namespace MediaPlayerApp
             Graphics graphics = e.Graphics;
             graphics.DrawImage(arrow_left_img, (arrow_btn_left.Width - arrow_left_img.Width)/2, (arrow_btn_left.Height - arrow_left_img.Height)/2);
             arrow_btn_left.BackColor = Color.Transparent;  // 배경 투명하게
+
+            arrow_btn_left.Location = new Point(12, ClientSize.Height/2 - arrow_btn_left.Height/2);
         }
 
         /* Left 화살표 Mouse up 처리 */
@@ -183,12 +192,15 @@ namespace MediaPlayerApp
         private void page1_panel_Paint(object sender, PaintEventArgs e)
         {
             Console.WriteLine("1 page image paint");
-            Console.WriteLine("Width: " + ClientSize.Width + "Height: " + ClientSize.Height);
+            graphics_page1 = e.Graphics;
 
             //ClientSize = new Size(ClientSize.Width, ClientSize.Height);
-            page1_panel.Location = new Point(ClientSize.Width/2 - page1_panel.Width/2, ClientSize.Height/2 - page1_panel.Height/2);
-            
-            graphics_page1 = e.Graphics;
+
+            if (!init_page1)  // Panel 초기 위치 설정
+            {
+                page1_panel.Location = new Point(ClientSize.Width/2 - page1_panel.Width/2, ClientSize.Height/2 - page1_panel.Height/2);
+                init_page1 = true;
+            }
 
             if (!blur_page1)
             {
@@ -198,8 +210,6 @@ namespace MediaPlayerApp
             {
                 graphics_page1.DrawImage(page1_img, new Rectangle(0, 0, page1_panel.Width, page1_panel.Height), 0, 0, page1_img.Width, page1_img.Height, GraphicsUnit.Pixel, imageAttributes);
             }
-
-            page1_panel.Refresh();
         }
 
         /* 1페이지 아이콘 Mouse up */
@@ -207,7 +217,10 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("1페이지 그림 mouse up.");
 
-            form2.PlayVideo(0);
+            if (!blur_page1)
+            {
+                form2.PlayVideo(0);
+            }
         }
 
         /* 1페이지 아이콘 Mouse down */
@@ -223,7 +236,12 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("2 page image paint");
             graphics_page2 = e.Graphics;
-            page2_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height / 2 - page2_panel.Height / 2);
+
+            if (!init_page2)  // Panel 초기 위치 설정
+            {
+                page2_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height / 2 - page2_panel.Height / 2);
+                init_page2 = true;
+            }
 
             if (!blur_page2)
             {
@@ -234,7 +252,7 @@ namespace MediaPlayerApp
                 graphics_page2.DrawImage(page2_img, new Rectangle(0, 0, page2_panel.Width, page2_panel.Height), 0, 0, page2_img.Width, page2_img.Height, GraphicsUnit.Pixel, imageAttributes);
             }
 
-            page2_panel.Refresh();
+            //page2_panel.Refresh();
         }
 
         /* 2페이지 아이콘 Mouse up */
@@ -242,7 +260,10 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("2페이지 그림 mouse up.");
 
-            form2.PlayVideo(1);
+            if (!blur_page2)
+            {
+                form2.PlayVideo(1);
+            }
         }
 
         /* 2페이지 아이콘 Mouse down */
@@ -258,7 +279,12 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("3 page image paint");
             graphics_page3 = e.Graphics;
-            page3_panel.Location = new Point(-280, ClientSize.Height / 2 - page3_panel.Height / 2);
+
+            if (!init_page3)  // Panel 초기 위치 설정
+            {
+                page3_panel.Location = new Point(-280, ClientSize.Height / 2 - page3_panel.Height / 2);
+                init_page3 = true;
+            }
 
             if (!blur_page3)
             {
@@ -269,7 +295,7 @@ namespace MediaPlayerApp
                 graphics_page3.DrawImage(page3_img, new Rectangle(0, 0, page3_panel.Width, page3_panel.Height), 0, 0, page3_img.Width, page3_img.Height, GraphicsUnit.Pixel, imageAttributes);
             }
 
-            page3_panel.Refresh();
+            //page3_panel.Refresh();
         }
 
         /* 3페이지 아이콘 Mouse up */
@@ -277,7 +303,10 @@ namespace MediaPlayerApp
         {
             Console.WriteLine("3페이지 그림 mouse up.");
 
-            form2.PlayVideo(2);
+            if (!blur_page3)
+            {
+                form2.PlayVideo(2);
+            }
         }
 
         /* 3페이지 아이콘 Mouse down */
@@ -333,20 +362,24 @@ namespace MediaPlayerApp
                 page3_panel.Location = new Point(page3_panel.Location.X - 90, page3_panel.Location.Y + 5);
                 page3_panel.Size = new Size(page3_panel.Width, page3_panel.Height - 5);
             }
-            
+
+            /* 애니메이션 정지 처리 */
             if (base_panel.Location.X <= -200)
             {
                 base_panel.Location = new Point(209, base_panel.Location.Y);
 
                 right_animator.Stop();
 
+                /* 2페이지 구성 */
                 if (page_1)
                 {
-                    // 2페이지로 넘어가기(2페이지 구성)
+                    //page_1 = false;
+                    //page_2 = true;  // 2페이지 flag 설정
+                    //page_3 = false;
                     /* page1 시작 */
                     blur_page1 = true;  // 1페이지 이미지 blur 처리
-                    page1_panel.Location = new Point(-280, 155);
                     page1_panel.Size = new Size(page1_panel.Width, 140);
+                    page1_panel.Location = new Point(-280, ClientSize.Height/2 - page1_panel.Height/2);
                     page1_panel.Refresh();
                     //arrow_btn_left.Parent = page1_panel;
                     //arrow_btn_left.Location = new Point(292, 82);
@@ -355,15 +388,15 @@ namespace MediaPlayerApp
                     //
                     /* page2 시작 */
                     blur_page2 = false;  // 2페이지 이미지 blur 해제
-                    page2_panel.Location = new Point(209, 108);
                     page2_panel.Size = new Size(page2_panel.Width, 234);
+                    page2_panel.Location = new Point(ClientSize.Width/2 - page2_panel.Width/2, ClientSize.Height/2 - page2_panel.Height/2);
                     page2_panel.Refresh();
                     /* page2 끝 */
                     //
                     /* page3 시작 */
                     blur_page3 = true;  // 3페이지 이미지 blur 처리
-                    page3_panel.Location = new Point(698, page3_panel.Location.Y);
                     page3_panel.Size = new Size(page3_panel.Width, 140);
+                    page3_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height/2 - page3_panel.Height/2);
                     page3_panel.Refresh();
                     //arrow_btn_right.Parent = page3_panel;
                     //arrow_btn_right.Location = new Point(10, 82);
@@ -371,13 +404,18 @@ namespace MediaPlayerApp
                     /* page3 끝 */
                 }
 
+                /* 3페이지 구성 */
                 if (page_2)
                 {
                     // 3페이지로 넘어가기(3페이지 구성)
+                    //page_1 = false;
+                    //page_2 = false;
+                    //page_3 = true;  // 3페이지 flag 설정
                     /* page1 시작 */
                     blur_page1 = true;
-                    page1_panel.Location = new Point(698, page1_panel.Location.Y);
                     page1_panel.Size = new Size(page1_panel.Width, 140);
+                    //page1_panel.Location = new Point(698, page1_panel.Location.Y);
+                    page1_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height/2 - page1_panel.Height/2);
                     page1_panel.Refresh();
                     //arrow_btn_right.Parent = page1_panel;
                     //arrow_btn_right.Location = new Point(10, 82);
@@ -386,8 +424,9 @@ namespace MediaPlayerApp
                     //
                     /* page2 시작 */
                     blur_page2 = true;
-                    page2_panel.Location = new Point(-280, 155);
                     page2_panel.Size = new Size(page2_panel.Width, 140);
+                    //page2_panel.Location = new Point(-280, 155);
+                    page2_panel.Location = new Point(-280, ClientSize.Height/2 - page2_panel.Height/2);
                     page2_panel.Refresh();
                     //arrow_btn_left.Parent = page2_panel;
                     //arrow_btn_left.Location = new Point(292, 82);
@@ -396,26 +435,33 @@ namespace MediaPlayerApp
                     //
                     /* page3 시작 */
                     blur_page3 = false;
-                    page3_panel.Location = new Point(209, 108);
                     page3_panel.Size = new Size(page3_panel.Width, 234);
+                    //page3_panel.Location = new Point(209, 108);
+                    page3_panel.Location = new Point(ClientSize.Width/2 - page3_panel.Width/2, ClientSize.Height/2 - page3_panel.Height/2);
                     page3_panel.Refresh();
                     /* page3 끝 */
                 }
 
+                /* 1페이지 구성 */
                 if (page_3)
                 {
                     // 1페이지로 넘어가기(1페이지 구성)
+                    //page_1 = true;
+                    //page_2 = false;
+                    //page_3 = false;
                     /* page1 시작 */
                     blur_page1 = false;
-                    page1_panel.Location = new Point(209, 108);
                     page1_panel.Size = new Size(page1_panel.Width, 234);
+                    //page1_panel.Location = new Point(209, 108);
+                    page1_panel.Location = new Point(ClientSize.Width/2 - page1_panel.Width/2, ClientSize.Height/2 - page1_panel.Height/2);
                     page1_panel.Refresh();
                     /* page1 끝 */
                     //
                     /* page2 시작 */
                     blur_page2 = true;
-                    page2_panel.Location = new Point(698, page2_panel.Location.Y);
                     page2_panel.Size = new Size(page2_panel.Width, 140);
+                    //page2_panel.Location = new Point(698, page2_panel.Location.Y);
+                    page2_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height/2 - page2_panel.Height/2);
                     page2_panel.Refresh();
                     //arrow_btn_right.Parent = page2_panel;
                     //arrow_btn_right.Location = new Point(10, 82);
@@ -424,8 +470,9 @@ namespace MediaPlayerApp
                     //
                     /* page3 시작 */
                     blur_page3 = true;
-                    page3_panel.Location = new Point(-280, 155);
                     page3_panel.Size = new Size(page3_panel.Width, 140);
+                    //page3_panel.Location = new Point(-280, 155);
+                    page3_panel.Location = new Point(-280, ClientSize.Height/2 - page3_panel.Height/2);
                     page3_panel.Refresh();
                     //arrow_btn_left.Parent = page3_panel;
                     //arrow_btn_left.Location = new Point(292, 82);
@@ -439,7 +486,8 @@ namespace MediaPlayerApp
         {
             base_panel.Location = new Point(base_panel.Location.X + 90, base_panel.Location.Y);
 
-            if (page_1) // 3 페이지로 넘어가기
+            /* 3페이지로 넘어가기 */
+            if (page_1)
             {
                 /* 1 페이지 애니메이션 */
                 page1_panel.Location = new Point(page1_panel.Location.X + 90, page1_panel.Location.Y + 5);
@@ -454,6 +502,7 @@ namespace MediaPlayerApp
                 page3_panel.Size = new Size(page3_panel.Width, page3_panel.Height + 5);
             }
 
+            /* 1페이지로 넘어가기 */
             if (page_2)
             {
                 /* 1 페이지 애니메이션 */
@@ -469,6 +518,7 @@ namespace MediaPlayerApp
                 page3_panel.Size = new Size(page3_panel.Width, page3_panel.Height);
             }
             
+            /* 2페이지로 넘어가기 */
             if (page_3)
             {
                 /* 1 페이지 애니메이션 */
@@ -484,83 +534,105 @@ namespace MediaPlayerApp
                 page3_panel.Size = new Size(page3_panel.Width, page3_panel.Height - 5);
             }
 
+            /* 애니메이션 정지 처리 */
             if (base_panel.Location.X >= 698)
             {
                 base_panel.Location = new Point(209, base_panel.Location.Y);
 
                 left_animator.Stop();
 
+                /* 3페이지 구성 */
                 if (page_1)
                 {
                     // 3페이지로 넘어가기
+                    //page_1 = false;
+                    //page_2 = false;
+                    //page_3 = true;  // 3페이지 flag 설정
                     /* page1 시작 */
                     blur_page1 = true;
-                    page1_panel.Location = new Point(698, 155);
                     page1_panel.Size = new Size(page1_panel.Width, 140);
+                    //page1_panel.Location = new Point(698, 155);
+                    page1_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height/2 - page1_panel.Height/2);
                     page1_panel.Refresh();
                     /* page1 끝 */
                     //
                     /* page2 시작 */
                     blur_page2 = true;
-                    page2_panel.Location = new Point(-280, page2_panel.Location.Y);
                     page2_panel.Size = new Size(page2_panel.Width, page2_panel.Height);
+                    //page2_panel.Location = new Point(-280, page2_panel.Location.Y);
+                    page2_panel.Location = new Point(-280, ClientSize.Height/2 - page2_panel.Height/2);
                     page2_panel.Refresh();
                     /* page2 끝 */
                     //
                     /* page3 시작 */
                     blur_page3 = false;
-                    page3_panel.Location = new Point(209, 108);
                     page3_panel.Size = new Size(page3_panel.Width, 234);
+                    //page3_panel.Location = new Point(209, 108);
+                    page3_panel.Location = new Point(ClientSize.Width/2 - page3_panel.Width/2, ClientSize.Height/2 - page3_panel.Height/2);
                     page3_panel.Refresh();
                     /* page3 끝 */
                 }
 
+                /* 1페이지 구성 */
                 if (page_2)
                 {
                     // 1페이지로 넘어가기
+                    //page_1 = true;  // 1페이지 flag 설정
+                    //page_2 = false;
+                    //page_3 = false;
                     /* page1 시작 */
                     blur_page1 = false;
-                    page1_panel.Location = new Point(209, 108);
                     page1_panel.Size = new Size(page1_panel.Width, 234);
+                    //page1_panel.Location = new Point(209, 108);
+                    page1_panel.Location = new Point(ClientSize.Width/2 - page1_panel.Width/2, ClientSize.Height/2 - page1_panel.Height/2);
                     page1_panel.Refresh();
                     /* page1 끝 */
                     //
                     /* page2 시작 */
                     blur_page2 = true;
-                    page2_panel.Location = new Point(698, 155);
                     page2_panel.Size = new Size(page2_panel.Width, 140);
+                    //page2_panel.Location = new Point(698, 155);
+                    page2_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height/2 - page2_panel.Height/2);
                     page2_panel.Refresh();
                     /* page2 끝 */
                     //
                     /* page3 시작 */
                     blur_page3 = true;
-                    page3_panel.Location = new Point(-280, page3_panel.Location.Y);
                     page3_panel.Size = new Size(page3_panel.Width, page3_panel.Height);
+                    //page3_panel.Location = new Point(-280, page3_panel.Location.Y);
+                    page3_panel.Location = new Point(-280, ClientSize.Height/2 - page3_panel.Height/2);
                     page3_panel.Refresh();
                     /* page3 끝 */
                 }
 
+                /* 2페이지 구성 */
                 if (page_3)
                 {
                     // 2페이지로 넘어가기
+                    //page_1 = false;
+                    //page_2 = true;
+                    //page_3 = false;
                     /* page1 시작 */
                     blur_page1 = true;
-                    page1_panel.Location = new Point(-280, page1_panel.Location.Y);
                     page1_panel.Size = new Size(page1_panel.Width, page1_panel.Height);
+                    //page1_panel.Location = new Point(-280, page1_panel.Location.Y);
+                    page1_panel.Location = new Point(-280, ClientSize.Height/2 - page1_panel.Height/2);
                     page1_panel.Refresh();
                     /* page1 끝 */
                     //
                     /* page2 시작 */
                     blur_page2 = false;
-                    page2_panel.Location = new Point(209, 108);
                     page2_panel.Size = new Size(page2_panel.Width, 234);
+                    //page2_panel.Location = new Point(209, 108);
+                    page2_panel.Location = new Point(ClientSize.Width/2 - page2_panel.Width/2, ClientSize.Height/2 - page2_panel.Height/2);
                     page2_panel.Refresh();
                     /* page2 끝 */
                     //
                     /* page3 시작 */
                     blur_page3 = true;
-                    page3_panel.Location = new Point(698, 155);
                     page3_panel.Size = new Size(page3_panel.Width, 140);
+                    //page3_panel.Location = new Point(698, 155);
+                    page3_panel.Location = new Point(ClientSize.Width - 102, ClientSize.Height/2 - page3_panel.Height/2);
                     page3_panel.Refresh();
                     /* page3 끝 */
                 }
